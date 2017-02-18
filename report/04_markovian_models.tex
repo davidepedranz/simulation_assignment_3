@@ -1,0 +1,27 @@
+\section{Markovian Models}
+\label{sec:markov}
+
+A stochastic process is an ordered collection of random variables:
+\begin{equation*}
+    \{X(t,s) \,|\, t \in T, s \in S\},
+\end{equation*}
+
+where $t$ is the index (or time) of the process and $s$ the space of possible values that the \ac{RV} can assume.
+
+The process $X$ is a Markov Process if:
+\begin{equation*}
+    \begin{gathered}
+        P[X(t_{n+1}) \leq x_{n+1} \,|\, X(t_n) = x_n, ... , X(t_0) = x_0] = \\
+        = P[X(t_{n+1}) \leq x_{n+1} \,|\, X(t_n) = x_n].
+    \end{gathered}
+\end{equation*}
+
+for $t_0 < t_1 < ... < t_n < t_{n+1}$.
+In other words, the value of the \ac{RV} $X(t_{n+1})$ depends only on the value of the previous \ac{RV} $X(t_n)$.
+The evolution of the process if fully described in its current state and is independent on its history.
+
+A Markov Process with discrete space $S$ can be modelled as a \ac{MC}.
+A \ac{MC} is a directed graph, where the nodes indicate the state of the process and edges indicate transitions between states.
+Each edge is associated with some transition rate, usually represented as the graph matrix that completely characterize the process.
+On certain conditions, the \ac{MC} admits a steady state, i.e. each state has a given probability which is independent on the initial state of the process.
+If it exists, the steady states solution is given by the solution of a simple system of linear equations, as showed in \cref{sec:first_model}.

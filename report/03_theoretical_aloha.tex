@@ -1,0 +1,14 @@
+\section{Aloha Analysis}
+\label{sec:theoretical_aloha}
+
+A theoretical analysis of the Aloha protocol has been proposed by Tanenbaum in 2003 \cite{tanenbaum2003computernetworks}.
+The model is derived from the analysis of packets collisions assuming that packets follow a Poisson process.
+The predicted throughput is computed as:
+\begin{equation*}
+    throughput = G \cdot e^{-2G} \cdot r\,,
+\end{equation*}
+where $G$ is the normalized load, i.e. the average number of packets transmitted for each unit of time, and $r$ denotes transmission rate of each station \cite{wiki:aloha}.
+$G$ can be computed as the total offered load over the transmission rate:
+\begin{equation*}
+    G = \frac{load}{r}\,.
+\end{equation*}

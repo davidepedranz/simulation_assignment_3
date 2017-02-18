@@ -1,0 +1,57 @@
+\section{Second Model}
+\label{sec:second_model}
+
+In the previous model, state $1$ can be reached from either state $0$ or state $2$.
+In the second case, the packet is very likely to be corrupted, since it was on the channel with another packet.
+We shall refine the model to distinguish those cases.
+We replace state $1$ with two new states: $1G$ ($1$ good) and $1B$ ($1$ bad).
+State $1G$ can be reached only from state $0$, whereas state $1B$ can be reached only from state $2$.
+\cref{fig:model2} shows the resulting \ac{MC} for $n=3$.
+
+\begin{figure}[t!]
+    \centering
+    \begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=2cm]
+        \tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=1]
+        
+        \node[state]    (0)                     {$0$};
+        \node[state]    (G)[above right of=0]   {$1G$};
+        \node[state]    (B)[below right of=0]   {$1B$};
+        \node[state]    (2)[below right of=G]   {$2$};
+        \node[state]    (3)[right of=2]         {$3$};
+        
+        \path
+            (0) edge[bend left]    node{$3\lambda$}     (G)
+            (G) edge[bend left]    node{$2\lambda$}     (2)
+            (B) edge[bend left]    node{$2\lambda$}     (2)
+            (2) edge[bend left]    node{$\lambda$}      (3)
+            (3) edge[bend left]    node{$3\mu$}         (2)
+            (2) edge[bend left]    node{$2\mu$}         (B)
+            (B) edge[bend left]    node{$\mu$}          (0)
+            (G) edge[bend left]    node{$\mu$}          (0)
+        ;
+    \end{tikzpicture}
+    \caption{Markov Chain that represent the second model for $3$ stations. The state represent the number of nodes on the channel.}
+    \label{fig:model2}
+\end{figure}
+
+As for the previous model, the \ac{CTMC} admits a steady state solution, which can be computed as follows:
+\begin{equation*}
+    \begin{cases}
+        \pi_i = \frac{\binom{n}{i} \lambda^i \mu^{n-i}}{(\lambda + \mu)^n}, & \mbox{if } i \neq 1 \\[1em]
+        \pi_{1G} = \frac{n \lambda \mu^n}{(\lambda + \mu)^n((n-1)\lambda + \mu)}, \\[1em]
+        \pi_{1B} = \frac{n(n-1) \lambda^2 \mu^{n-1}}{(\lambda + \mu)^n((n-1)\lambda + \mu)}. \\
+    \end{cases}
+\end{equation*}
+
+Note that $\pi_{1G} + \pi_{1B}$ equals to $\pi_1$ of the previous model.
+
+Similarly to the previous model, throughout and collision rate are computed as follows:
+\begin{equation*}
+    throughput = \pi_{1G} \cdot r \cdot \frac{n-1}{n}\,,
+\end{equation*}
+
+\begin{equation*}
+    collision\_rate = \frac{\pi_{1B} + \sum_{i = 2}^{n} \pi_i}{\pi_{1G} + \pi_{1B} + \sum_{i = 2}^{n} \pi_i}\,.
+\end{equation*}
+
+As for the first model, we assume that stations transmit packets as soon as they get them, so they do not have any queue.

@@ -1,0 +1,76 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{silence}\WarningsOff[latexfont]
+
+\usepackage{amsmath}
+
+\RequirePackage{tikz}[2010/10/13]
+\usetikzlibrary{arrows,automata,calc,intersections,patterns,decorations.pathmorphing,decorations.pathreplacing}
+
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[binary-units,per-mode=symbol]{siunitx}
+\sisetup{list-final-separator = {, and }}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{microtype}
+\usepackage{textcomp}
+\usepackage[american]{babel}
+\usepackage[noabbrev,capitalise]{cleveref}
+\usepackage{xspace}
+\usepackage{hyphenat}
+\usepackage[draft,inline,nomargin,index]{fixme}
+\fxsetup{theme=color}
+\usepackage{grffile}
+\usepackage{xfrac}
+\usepackage{multirow}
+\RequirePackage{xstring}
+\RequirePackage{xparse}
+\RequirePackage[index=true]{acro}
+
+\NewDocumentCommand\acrodef{mO{#1}mG{}}{\DeclareAcronym{#1}{short={#2}, long={#3}, #4}}
+\NewDocumentCommand\acused{m}{\acuse{#1}}
+
+\usepackage{upquote}
+
+\acrodef{MAC}{Medium Access Control}
+\acrodef{RV}{Random Variable}
+\acrodef{MC}{Markov Chain}
+\acrodef{CTMC}{Continuous Time Markov Chain}
+
+\begin{document}
+
+\title{Aloha Markovian Model}
+\author{
+	\IEEEauthorblockN{Davide Pedranz, Mat. number 189295}
+	\texttt{davide.pedranz@studenti.unitn.it}
+}
+
+\maketitle
+
+\begin{abstract}
+Models are powerful mathematical tools that allow a very quick and efficient system analysis.
+They can be used to analyze protocols and systems before building them or to confirm the results of simulations.
+In this assignment, we will build a Markovian Model for the Aloha MAC protocol and compare it with the results of the simulator. 
+\end{abstract}
+
+\acresetall
+
+\input{01_introduction}
+\input{02_aloha}
+\input{03_theoretical_aloha}
+\input{04_markovian_models}
+\input{05_assumptions}
+\input{06_first_model}
+\input{07_second_model}
+\input{08_comparison}
+\input{09_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
