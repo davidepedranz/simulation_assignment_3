@@ -97,17 +97,16 @@ It is easy to show that the solution of this model for an arbitrary number of st
 
 We are interested in the probability $\pi_1$ that there is only $1$ packet on the channel, since it is the only case when a packet can be transmitted without collisions.
 Given $\pi_1$, we can compute the average throughput at the receiver as:
-\begin{equation}
+\begin{equation*}
     throughput = \pi_1 \cdot r \cdot \frac{n-1}{n}.
-    \label{eq:tr}
-\end{equation}
+\end{equation*}
 
-The term $\frac{n-1}{n}$ in \cref{eq:tr} is given by the definition of throughput as the size of the received packets over the total size of emitted packets.
+The term $\frac{n-1}{n}$ is given by the definition of throughput as the size of the received packets over the total size of emitted packets.
 If we consider a single station, it receives packets from the other $n-1$ ones: the packets sent by itself are not counted in its throughput.
 
 In a similar way, we can compute the collision rate as the probability of having $2$ or more packets in the air over the probability of at least $1$ packet:
-\begin{equation}
+\begin{equation*}
     collision\_rate = \frac{\sum_{i = 2}^{n} \pi_i}{\sum_{i = 1}^{n} \pi_i}.
-\end{equation}
+\end{equation*}
 
 The model does not consider the stations' packets queue: it assumes the stations to transmit each packet as soon as they receive it from the application.
