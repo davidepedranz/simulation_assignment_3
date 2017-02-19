@@ -144,7 +144,7 @@ def main():
     plot.throughput([tr_complex_5, tr_complex_10, tr_complex_15, theoretic],
                     'plots', name='tr_1g1b', y_lim=(0, 2))
 
-    # all models
+    # throughput all models
     plot.throughput([
         theoretic,
         tr_simulator_5,
@@ -176,6 +176,7 @@ def main():
     cr_simulator_15 = simulations.collisions('runs/summary_aloha_15.h5',
                                              'Simulator (15 stations)')
 
+    # collisions - all models
     plot.collisions([
         cr_simple_5,
         cr_simple_10,
@@ -188,6 +189,7 @@ def main():
         cr_simulator_15
     ], 'plots', 'cr_all')
 
+    # collisions - comparison for 10 stations
     plot.collisions([
         cr_simulator_10,
         cr_simple_10,

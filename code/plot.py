@@ -25,6 +25,10 @@ import matplotlib.pyplot as plt
 
 def _plot(traces, _dir, name, title, loc, label_x, label_y, x_lim=(0, 50),
           y_lim=(0, 4), dim=(8, 6)):
+    """
+    Generate a plot of the given traces to include in the report.
+    """
+
     # generate 2 formats, 1 for LaTeX, 1 for visualization
     for ext in ['png', 'pdf']:
 
@@ -58,12 +62,18 @@ def _plot(traces, _dir, name, title, loc, label_x, label_y, x_lim=(0, 50),
 
 
 def throughput(traces, _dir, name, x_lim=(0, 50), y_lim=(0, 3.5), dim=(8, 6)):
+    """
+    Generate a plot for the throughput.
+    """
     _plot(traces, _dir, name, 'Throughput', 'upper right',
           'Total offered load on the channel (Mbps)',
           'Average throughput at receiver (Mbps)', x_lim, y_lim, dim)
 
 
 def collisions(traces, _dir, name, x_lim=(0, 50), dim=(8, 6)):
+    """
+    Generate a plot for the collision rate.
+    """
     _plot(traces, _dir, name, 'Collision rate', 'lower right',
           'Total offered load on the channel (Mbps)',
           'Packets collision rate', x_lim, (0, 1), dim)

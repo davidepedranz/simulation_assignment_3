@@ -20,6 +20,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
+from utils import mkdir
 
 
 def distance((x, y), (_x, _y)):
@@ -103,6 +104,7 @@ def main():
         nodes.append([x, y])
         labels.append((math.sin(angle) * (r + 20), math.cos(angle) * (r + 20)))
 
+    mkdir('plots')
     draw_nodes(nodes, labels, 10, 'plots/topology.pdf')
 
 
