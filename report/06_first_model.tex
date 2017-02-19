@@ -16,8 +16,9 @@ Since we assumed an exponential distribution for the sizes, we define $\mu$ as f
     = \Big( \frac{s}{r} \Big) ^ {-1}
     = \frac{r}{s},
 \end{equation*}
-
 where $t_{TX}$ denotes the transmission time for one averaged sized packet.
+Similarly to the $\lambda$ case, we define the transition rate from state $k$ to $k-1$ as $k\mu$.
+For example, if we are in state $2$ (there are $2$ packets on the channel), we have a transition rate to state $1$ of $2\mu$.
 
 \begin{figure}[t!]
     \centering
