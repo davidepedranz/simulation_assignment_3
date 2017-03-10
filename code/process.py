@@ -108,7 +108,7 @@ def compute_model_theoretic():
     Compute the theoretical model for Aloha.
     """
     loads = list(numpy.arange(0.5, 10, 0.5)) + range(11, 50, 1)
-    return loads, map(tr_theoretical, loads), 'Theoretic'
+    return loads, map(tr_theoretical, loads), 'Aloha'
 
 
 def main():
@@ -133,12 +133,17 @@ def main():
     tr_simulator_5 = simulations.throughput('runs/summary_aloha_5.h5',
                                             'Simulator (n=5)')
     tr_simulator_10 = simulations.throughput('runs/summary_aloha_10.h5',
-                                             'Simulator (n=10)')
+                                             'Simulator (ring topology)')
     tr_simulator_15 = simulations.throughput('runs/summary_aloha_15.h5',
                                              'Simulator (n=15)')
+
+    tr_simulator_original = simulations.throughput(
+        'runs/summary_aloha_original_topology.h5',
+        'Simulator (original topology)', _id='original.aloha')
+
     # compare 10 nodes
-    plot.throughput([tr_simulator_10, tr_simple_10, tr_complex_10, theoretic],
-                    'plots', name='tr_10')
+    plot.throughput([tr_simulator_10, tr_simulator_original, tr_simple_10,
+                     tr_complex_10, theoretic], 'plots', name='tr_10')
 
     # compare model 2
     plot.throughput([tr_complex_5, tr_complex_10, tr_complex_15, theoretic],
@@ -172,9 +177,13 @@ def main():
     cr_simulator_5 = simulations.collisions('runs/summary_aloha_5.h5',
                                             'Simulator (5 stations)')
     cr_simulator_10 = simulations.collisions('runs/summary_aloha_10.h5',
-                                             'Simulator')
+                                             'Simulator (ring topology)')
     cr_simulator_15 = simulations.collisions('runs/summary_aloha_15.h5',
                                              'Simulator (15 stations)')
+
+    cr_simulator_original = simulations.collisions(
+        'runs/summary_aloha_original_topology.h5',
+        'Simulator (original topology)', _id='original.aloha')
 
     # collisions - all models
     plot.collisions([
@@ -191,6 +200,7 @@ def main():
 
     # collisions - comparison for 10 stations
     plot.collisions([
+        cr_simulator_original,
         cr_simulator_10,
         cr_simple_10,
         cr_1b1g_10

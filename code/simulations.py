@@ -17,16 +17,19 @@ import utils
 import pandas
 
 
-def throughput(path, name):
+def throughput(path, name, _id=None):
     """
     Load the result of a single simulation.
     :param path: H5 file to load (relative location).
     :param name: Name of the simulation.
+    :param _id: Optional: query the dataframe by id.
     :return: Triple <load, throughput, name>.
     """
 
     # load statistics
     statistics = pandas.read_hdf(utils.locate(path), 'summary')
+    if _id is not None:
+        statistics = statistics.query('id == "%s"' % _id)
     assert len(statistics.id.unique()) == 1
 
     # extract the wanted data
@@ -37,16 +40,19 @@ def throughput(path, name):
     return load, tr, name
 
 
-def collisions(path, name):
+def collisions(path, name, _id=None):
     """
     Load the collision rate of a single simulation.
     :param path: H5 file to load (relative location).
     :param name: Name of the simulation.
+    :param _id: Optional: query the dataframe by id.
     :return: Triple <load, collision rate, name>.
     """
 
     # load statistics
     statistics = pandas.read_hdf(utils.locate(path), 'summary')
+    if _id is not None:
+        statistics = statistics.query('id == "%s"' % _id)
     assert len(statistics.id.unique()) == 1
 
     # extract the wanted data
